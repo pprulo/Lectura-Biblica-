@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lectura Bíblica | Evangelios y Hechos</title>
+  
+  <!-- Configuración PWA / Acceso directo a pantalla principal -->
+  <meta name="theme-color" content="#4A525A">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Biblia">
+
+  <!-- ICONO DE ACCESO DIRECTO: Biblia gris plateada (SVG Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='silverCover' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23D4D9DE'/%3E%3Cstop offset='35%25' stop-color='%239DA4AB'/%3E%3Cstop offset='75%25' stop-color='%23687077'/%3E%3Cstop offset='100%25' stop-color='%23454B52'/%3E%3C/linearGradient%3E%3ClinearGradient id='spine' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23363B40'/%3E%3Cstop offset='50%25' stop-color='%236B737A'/%3E%3Cstop offset='100%25' stop-color='%234F555C'/%3E%3C/linearGradient%3E%3ClinearGradient id='pages' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23ECEEF0'/%3E%3Cstop offset='100%25' stop-color='%23B4BAC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='115' y='65' width='295' height='395' rx='22' fill='url(%23pages)'/%3E%3Crect x='102' y='54' width='296' height='396' rx='20' fill='url(%23silverCover)'/%3E%3Crect x='102' y='54' width='30' height='396' rx='6' fill='url(%23spine)'/%3E%3Cline x1='132' y1='54' x2='132' y2='450' stroke='%23363B40' stroke-width='2' opacity='0.7'/%3E%3Cline x1='134' y1='54' x2='134' y2='450' stroke='%23EDF0F3' stroke-width='1.5' opacity='0.8'/%3E%3Crect x='156' y='92' width='216' height='320' rx='10' fill='none' stroke='%23585F66' stroke-width='2.2' opacity='0.6'/%3E%3Crect x='158' y='94' width='212' height='316' rx='8' fill='none' stroke='%23EDF1F5' stroke-width='1.5' opacity='0.5'/%3E%3Crect x='190' y='160' width='148' height='10' rx='5' fill='%23F4F6F8' opacity='0.9'/%3E%3Crect x='214' y='180' width='100' height='6' rx='3' fill='%23D4D9DF' opacity='0.8'/%3E%3Cpath d='M232 440 L232 486 L248 472 L264 486 L264 440 Z' fill='%23454B52'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='silverCover' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23D4D9DE'/%3E%3Cstop offset='35%25' stop-color='%239DA4AB'/%3E%3Cstop offset='75%25' stop-color='%23687077'/%3E%3Cstop offset='100%25' stop-color='%23454B52'/%3E%3C/linearGradient%3E%3ClinearGradient id='spine' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23363B40'/%3E%3Cstop offset='50%25' stop-color='%236B737A'/%3E%3Cstop offset='100%25' stop-color='%234F555C'/%3E%3C/linearGradient%3E%3ClinearGradient id='pages' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23ECEEF0'/%3E%3Cstop offset='100%25' stop-color='%23B4BAC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='115' y='65' width='295' height='395' rx='22' fill='url(%23pages)'/%3E%3Crect x='102' y='54' width='296' height='396' rx='20' fill='url(%23silverCover)'/%3E%3Crect x='102' y='54' width='30' height='396' rx='6' fill='url(%23spine)'/%3E%3Cline x1='132' y1='54' x2='132' y2='450' stroke='%23363B40' stroke-width='2' opacity='0.7'/%3E%3Cline x1='134' y1='54' x2='134' y2='450' stroke='%23EDF0F3' stroke-width='1.5' opacity='0.8'/%3E%3Crect x='156' y='92' width='216' height='320' rx='10' fill='none' stroke='%23585F66' stroke-width='2.2' opacity='0.6'/%3E%3Crect x='158' y='94' width='212' height='316' rx='8' fill='none' stroke='%23EDF1F5' stroke-width='1.5' opacity='0.5'/%3E%3Crect x='190' y='160' width='148' height='10' rx='5' fill='%23F4F6F8' opacity='0.9'/%3E%3Crect x='214' y='180' width='100' height='6' rx='3' fill='%23D4D9DF' opacity='0.8'/%3E%3Cpath d='M232 440 L232 486 L248 472 L264 486 L264 440 Z' fill='%23454B52'/%3E%3C/svg%3E">
+
+  <!-- Manifiesto PWA embebido para que Android lo instale con este icono exacto -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"Lectura Bíblica","short_name":"Biblia","start_url":".","display":"standalone","background_color":"#1A1D20","theme_color":"#4A525A","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"%3E%3Crect width=\"512\" height=\"512\" fill=\"%23383E44\"/%3E%3Crect x=\"116\" y=\"64\" width=\"280\" height=\"384\" rx=\"16\" fill=\"%238A9299\"/%3E%3Crect x=\"116\" y=\"64\" width=\"28\" height=\"384\" rx=\"4\" fill=\"%234F555C\"/%3E%3Crect x=\"170\" y=\"104\" width=\"196\" height=\"304\" rx=\"8\" fill=\"none\" stroke=\"%23CBD1D6\" stroke-width=\"2\"/%3E%3Crect x=\"204\" y=\"168\" width=\"128\" height=\"10\" rx=\"5\" fill=\"%23FFFFFF\"/%3E%3C/svg%3E","sizes":"192x192 512x512","type":"image/svg+xml"}]}'>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            silver: {
+              50: '#F7F8FA',
+              100: '#ECEEF1',
+              200: '#D9DDE2',
+              300: '#BCC2C9',
+              400: '#949CA5',
+              500: '#6E7782',
+              600: '#525B65',
+              700: '#3D444C',
+              800: '#2A2F35',
+              900: '#1A1D20',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Efecto táctil sutil */
+    button {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
+  </style>
+</head>
+
+<body class="h-full bg-slate-50 text-slate-800 dark:bg-silver-900 dark:text-slate-100 flex flex-col font-sans antialiased transition-colors duration-200">
+
+  <!-- CABECERA PRINCIPAL LIMPIA -->
+  <header class="w-full bg-white dark:bg-silver-800 border-b border-slate-200 dark:border-silver-700/80 px-4 py-3 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-2xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo: Icono SVG de la Biblia Gris Plateada -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-11 flex-shrink-0 drop-shadow-sm">
+          <svg class="w-full h-full" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="hdrSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E2E5E8"/>
+                <stop offset="40%" stop-color="#A4ACB3"/>
+                <stop offset="85%" stop-color="#676F76"/>
+                <stop offset="100%" stop-color="#4A5158"/>
+              </linearGradient>
+              <linearGradient id="hdrSpine" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2D3237"/>
+                <stop offset="60%" stop-color="#697178"/>
+                <stop offset="100%" stop-color="#495057"/>
+              </linearGradient>
+            </defs>
+            <!-- Hoja base -->
+            <rect x="114" y="66" width="294" height="392" rx="20" fill="#CBD1D6"/>
+            <!-- Portada plateada -->
+            <rect x="104" y="56" width="294" height="392" rx="18" fill="url(#hdrSilver)"/>
+            <!-- Lomo -->
+            <rect x="104" y="56" width="30" height="392" rx="6" fill="url(#hdrSpine)"/>
+            <line x1="134" y1="56" x2="134" y2="448" stroke="#2D3237" stroke-width="2" opacity="0.6"/>
+            <line x1="136" y1="56" x2="136" y2="448" stroke="#F0F3F5" stroke-width="1.5" opacity="0.8"/>
+            <!-- Marco plateado bajo relieve -->
+            <rect x="156" y="92" width="216" height="320" rx="8" stroke="#50565D" stroke-width="2" fill="none" opacity="0.5"/>
+            <rect x="158" y="94" width="212" height="316" rx="6" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <!-- Título representativo -->
+            <rect x="190" y="156" width="148" height="10" rx="5" fill="#FFFFFF" opacity="0.95"/>
+            <rect x="216" y="176" width="96" height="6" rx="3" fill="#DDE1E5" opacity="0.85"/>
+            <!-- Separador cinta -->
+            <path d="M 234 436 L 234 484 L 249 470 L 264 484 L 264 436 Z" fill="#42474E"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-base font-bold tracking-tight text-slate-800 dark:text-slate-100 leading-tight">
+            Lectura Bíblica
+          </h1>
+          <p class="text-xs text-slate-700 dark:text-slate-300">
+            Evangelios y Hechos
+          </p>
+        </div>
+      </div>
+
+      <!-- Acciones de cabecera -->
+      <div class="flex items-center gap-1.5">
+        <!-- Botón para desplegar/ocultar temporizador -->
+        <button id="btn-toggle-timer" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-silver-700 transition flex items-center gap-1" title="Temporizador de 5 minutos">
+          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span id="timer-compact-label" class="hidden sm:inline">5 min</span>
+        </button>
+
+        <!-- Alternar tema (Claro / Oscuro) -->
+        <button id="theme-toggle" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-silver-700 transition" aria-label="Cambiar tema">
+          <svg id="icon-sun" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+          <svg id="icon-moon" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL: Centrado, limpio y enfocado -->
+  <main class="flex-1 max-w-2xl w-full mx-auto px-4 py-5 space-y-4">
+
+    <!-- TEMPORIZADOR OPCIONAL DISCRETO (Plegable) -->
+    <section id="timer-panel" class="hidden bg-white dark:bg-silver-800 rounded-xl p-3 border border-slate-200 dark:border-silver-700 shadow-xs transition-all">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Pausa serena:</span>
+          <span id="timer-display" class="font-mono text-base font-bold text-silver-700 dark:text-slate-200">05:00</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-timer-start" class="px-3 py-1 bg-slate-800 dark:bg-silver-600 text-white rounded-lg text-xs font-medium hover:bg-slate-700 transition">
+            Iniciar
+          </button>
+          <button id="btn-timer-reset" class="px-2.5 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-silver-700 rounded-lg text-xs transition">
+            Reiniciar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. SECCIÓN PRINCIPAL: ¿DÓNDE ME QUEDÉ HOY? -->
+    <section class="bg-white dark:bg-silver-800 rounded-2xl p-4 border border-slate-200/90 dark:border-silver-700 shadow-xs">
+      <div class="flex items-center justify-between mb-1.5">
+        <label for="input-bookmark" class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+          Dónde me quedé hoy
+        </label>
+        <span id="save-indicator" class="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium opacity-0 transition-opacity">
+          Guardado ✓
+        </span>
+      </div>
+
+      <!-- Campo de texto grande y claro -->
+      <div class="relative">
+        <input 
+          type="text" 
+          id="input-bookmark" 
+          placeholder="Ej: Lucas 4:14 o Mateo 6:9" 
+          class="w-full text-base sm:text-lg font-semibold px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-silver-600 bg-slate-50/50 dark:bg-silver-900/60 text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-silver-400 transition"
+        />
+      </div>
+
+      <!-- Reflexión o nota rápida opcional -->
+      <div class="mt-2.5">
+        <input 
+          type="text" 
+          id="input-note" 
+          placeholder="Idea o frase clave de hoy (opcional)" 
+          class="w-full text-xs px-3 py-1.5 rounded-lg border border-slate-200/80 dark:border-silver-700 bg-transparent text-slate-700 dark:text-slate-300 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
+        />
+      </div>
+    </section>
+
+    <!-- 2. SELECTOR DE LIBROS (Pestañas limpias) -->
+    <section>
+      <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1" id="book-selector">
+        <!-- Botones inyectados por JS -->
+      </div>
+    </section>
+
+    <!-- 3. CUADRÍCULA DE CAPÍTULOS DEL LIBRO ACTIVO -->
+    <section class="bg-white dark:bg-silver-800 rounded-2xl p-4 border border-slate-200/90 dark:border-silver-700 shadow-xs space-y-3">
+      
+      <!-- Detalle del libro seleccionado y su progreso -->
+      <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-silver-700/60">
+        <div>
+          <h2 id="active-book-name" class="text-base font-bold text-slate-800 dark:text-slate-100">
+            Evangelio de Mateo
+          </h2>
+          <span id="active-book-stats" class="text-xs text-slate-700 dark:text-slate-300">
+            0 de 28 capítulos completados (0%)
+          </span>
+        </div>
+
+        <!-- Botón discreto para reiniciar o marcar todo el libro -->
+        <button id="btn-toggle-all" class="text-[11px] font-medium text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 py-1 px-2 rounded hover:bg-slate-100 dark:hover:bg-silver-700 transition">
+          Marcar todo
+        </button>
+      </div>
+
+      <!-- Barra de progreso sutil del libro actual -->
+      <div class="w-full bg-slate-100 dark:bg-silver-900 h-1.5 rounded-full overflow-hidden">
+        <div id="active-book-bar" class="bg-slate-700 dark:bg-slate-300 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+      </div>
+
+      <!-- Cuadrícula limpia de botones numéricos -->
+      <div id="chapters-grid" class="grid grid-cols-4 sm:grid-cols-7 gap-2 pt-1">
+        <!-- Capítulos inyectados por JS -->
+      </div>
+
+      <p class="text-[11px] text-center text-slate-600 dark:text-slate-300 pt-1">
+        Toca cualquier capítulo para marcarlo. Tómate los días que necesites por capítulo.
+      </p>
+    </section>
+
+    <!-- 4. BARRA DE PROGRESO GLOBAL DEL BLOQUE (117 capítulos) -->
+    <footer class="bg-white/60 dark:bg-silver-800/60 rounded-xl p-3 border border-slate-200/70 dark:border-silver-700/60 flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
+      <span class="font-medium">Total Evangelios & Hechos:</span>
+      <span id="global-stats-text" class="font-bold text-slate-800 dark:text-slate-200">
+        0 / 117 (0%)
+      </span>
+    </footer>
+
+  </main>
+
+  <!-- TOAST SIMPLE (Sin alertas molestas) -->
+  <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 text-xs font-medium rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+    <span id="toast-text">Punto guardado</span>
+  </div>
+
+  <!-- JAVASCRIPT: LÓGICA MINIMALISTA Y LOCALSTORAGE -->
+  <script>
+    /* 1. ESTRUCTURA DE LOS 5 LIBROS */
+    const BOOKS = [
+      { id: 'mateo', name: 'Mateo', chapters: 28 },
+      { id: 'marcos', name: 'Marcos', chapters: 16 },
+      { id: 'lucas', name: 'Lucas', chapters: 24 },
+      { id: 'juan', name: 'Juan', chapters: 21 },
+      { id: 'hechos', name: 'Hechos', chapters: 28 }
+    ];
+
+    const STORAGE_KEY = 'lectura_biblica_minimal_db';
+
+    /* 2. ESTADO INICIAL */
+    let state = {
+      darkMode: false,
+      activeBook: 'mateo',
+      bookmark: '',
+      note: '',
+      readChapters: {
+        mateo: [],
+        marcos: [],
+        lucas: [],
+        juan: [],
+        hechos: []
+      }
+    };
+
+    /* Cargar desde LocalStorage */
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          state = { ...state, ...JSON.parse(saved) };
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          state.darkMode = true;
+        }
+      } catch (e) {
+        console.error("Error al cargar localStorage", e);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.error("Error al guardar localStorage", e);
+      }
+    }
+
+    /* 3. TEMA OSCURO / CLARO */
+    function applyTheme() {
+      const html = document.documentElement;
+      const sun = document.getElementById('icon-sun');
+      const moon = document.getElementById('icon-moon');
+      if (state.darkMode) {
+        html.classList.add('dark');
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
+      } else {
+        html.classList.remove('dark');
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
+      }
+    }
+
+    /* 4. RENDERIZADO DEL SELECTOR DE LIBROS */
+    function renderBookSelector() {
+      const container = document.getElementById('book-selector');
+      container.innerHTML = '';
+
+      BOOKS.forEach(b => {
+        const isCurrent = b.id === state.activeBook;
+        const readCount = state.readChapters[b.id]?.length || 0;
+        const btn = document.createElement('button');
+        
+        btn.className = `flex-1 py-2 px-3 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border ${
+          isCurrent
+            ? 'bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900 border-transparent shadow-xs'
+            : 'bg-white text-slate-600 dark:bg-silver-800 dark:text-slate-300 border-slate-200 dark:border-silver-700 hover:bg-slate-50'
+        }`;
+
+        btn.innerHTML = `${b.name} <span class="opacity-70 text-[10px] ml-0.5">(${readCount}/${b.chapters})</span>`;
+
+        btn.addEventListener('click', () => {
+          state.activeBook = b.id;
+          saveState();
+          renderBookSelector();
+          renderActiveBook();
+        });
+
+        container.appendChild(btn);
+      });
+    }
+
+    /* 5. RENDERIZADO DEL LIBRO ACTIVO Y SUS CAPÍTULOS */
+    function renderActiveBook() {
+      const book = BOOKS.find(b => b.id === state.activeBook);
+      if (!book) return;
+
+      const readList = state.readChapters[book.id] || [];
+      const readCount = readList.length;
+      const percent = Math.round((readCount / book.chapters) * 100);
+
+      document.getElementById('active-book-name').textContent = book.id === 'hechos' ? 'Hechos de los Apóstoles' : `Evangelio de ${book.name}`;
+      document.getElementById('active-book-stats').textContent = `${readCount} de ${book.chapters} capítulos completados (${percent}%)`;
+      document.getElementById('active-book-bar').style.width = `${percent}%`;
+
+      // Texto de botón alternar todos
+      const btnToggleAll = document.getElementById('btn-toggle-all');
+      btnToggleAll.textContent = readCount === book.chapters ? 'Desmarcar todo' : 'Marcar todo';
+
+      // Renderizar cuadrícula
+      const grid = document.getElementById('chapters-grid');
+      grid.innerHTML = '';
+
+      for (let ch = 1; ch <= book.chapters; ch++) {
+        const isRead = readList.includes(ch);
+        const btn = document.createElement('button');
+
+        btn.className = `h-11 rounded-xl text-xs font-semibold flex items-center justify-center transition border ${
+          isRead
+            ? 'bg-slate-800 text-white border-slate-800 dark:bg-slate-200 dark:text-slate-900 dark:border-slate-200'
+            : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-400 dark:bg-silver-900/50 dark:text-slate-300 dark:border-silver-700'
+        }`;
+
+        btn.textContent = ch;
+
+        btn.addEventListener('click', () => {
+          toggleChapter(book.id, ch);
+        });
+
+        grid.appendChild(btn);
+      }
+
+      renderGlobalStats();
+    }
+
+    function toggleChapter(bookId, ch) {
+      const list = state.readChapters[bookId];
+      const idx = list.indexOf(ch);
+      if (idx === -1) {
+        list.push(ch);
+        list.sort((a, b) => a - b);
+        showToast(`Capítulo ${ch} completado`);
+      } else {
+        list.splice(idx, 1);
+      }
+      saveState();
+      renderBookSelector();
+      renderActiveBook();
+    }
+
+    /* 6. ESTADÍSTICA GLOBAL SENCILLA */
+    function renderGlobalStats() {
+      let totalRead = 0;
+      let totalCapitulos = 117; // 28 + 16 + 24 + 21 + 28
+
+      BOOKS.forEach(b => {
+        totalRead += (state.readChapters[b.id] || []).length;
+      });
+
+      const globalPct = Math.round((totalRead / totalCapitulos) * 100);
+      document.getElementById('global-stats-text').textContent = `${totalRead} de ${totalCapitulos} cap (${globalPct}%)`;
+    }
+
+    /* 7. TOAST SENCILLO */
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = msg;
+      toast.classList.remove('opacity-0');
+      setTimeout(() => {
+        toast.classList.add('opacity-0');
+      }, 2000);
+    }
+
+    /* 8. SONIDO SUAVE Y TEMPORIZADOR DE 5 MINUTOS (Web Audio API) */
+    function playSoftChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        [523.25, 659.25, 783.99].forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.15));
+          gain.gain.setValueAtTime(0, ctx.currentTime + (idx * 0.15));
+          gain.gain.linearRampToValueAtTime(0.08, ctx.currentTime + (idx * 0.15) + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (idx * 0.15) + 2.5);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + (idx * 0.15));
+          osc.stop(ctx.currentTime + (idx * 0.15) + 2.6);
+        });
+      } catch (e) {
+        console.log("Audio contextual en espera.");
+      }
+    }
+
+    let timerInterval = null;
+    let timerSeconds = 5 * 60;
+    let isRunning = false;
+
+    function formatTime(s) {
+      const m = Math.floor(s / 60);
+      const sec = s % 60;
+      return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    }
+
+    function initTimer() {
+      const display = document.getElementById('timer-display');
+      const btnStart = document.getElementById('btn-timer-start');
+      const btnReset = document.getElementById('btn-timer-reset');
+      const panel = document.getElementById('timer-panel');
+      const btnToggle = document.getElementById('btn-toggle-timer');
+
+      btnToggle.addEventListener('click', () => {
+        panel.classList.toggle('hidden');
+      });
+
+      btnStart.addEventListener('click', () => {
+        if (!isRunning) {
+          isRunning = true;
+          btnStart.textContent = 'Pausar';
+          timerInterval = setInterval(() => {
+            if (timerSeconds > 0) {
+              timerSeconds--;
+              display.textContent = formatTime(timerSeconds);
+            } else {
+              clearInterval(timerInterval);
+              isRunning = false;
+              timerSeconds = 5 * 60;
+              display.textContent = "05:00";
+              btnStart.textContent = 'Iniciar';
+              playSoftChime();
+              showToast("¡5 minutos cumplidos con calma!");
+            }
+          }, 1000);
+        } else {
+          isRunning = false;
+          clearInterval(timerInterval);
+          btnStart.textContent = 'Continuar';
+        }
+      });
+
+      btnReset.addEventListener('click', () => {
+        clearInterval(timerInterval);
+        isRunning = false;
+        timerSeconds = 5 * 60;
+        display.textContent = "05:00";
+        btnStart.textContent = 'Iniciar';
+      });
+    }
+
+    /* 9. INICIALIZACIÓN GENERAL */
+    document.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      applyTheme();
+
+      // Configuración de inputs principales
+      const inputBookmark = document.getElementById('input-bookmark');
+      const inputNote = document.getElementById('input-note');
+      const indicator = document.getElementById('save-indicator');
+
+      inputBookmark.value = state.bookmark || '';
+      inputNote.value = state.note || '';
+
+      let saveTimeout;
+      function handleAutoSave() {
+        state.bookmark = inputBookmark.value.trim();
+        state.note = inputNote.value.trim();
+        saveState();
+
+        indicator.classList.remove('opacity-0');
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+          indicator.classList.add('opacity-0');
+        }, 1200);
+      }
+
+      inputBookmark.addEventListener('input', handleAutoSave);
+      inputNote.addEventListener('input', handleAutoSave);
+
+      // Alternar todo el libro
+      document.getElementById('btn-toggle-all').addEventListener('click', () => {
+        const book = BOOKS.find(b => b.id === state.activeBook);
+        const list = state.readChapters[book.id];
+        if (list.length === book.chapters) {
+          state.readChapters[book.id] = [];
+        } else {
+          const all = [];
+          for (let i = 1; i <= book.chapters; i++) all.push(i);
+          state.readChapters[book.id] = all;
+        }
+        saveState();
+        renderBookSelector();
+        renderActiveBook();
+      });
+
+      // Tema
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        state.darkMode = !state.darkMode;
+        applyTheme();
+        saveState();
+      });
+
+      initTimer();
+      renderBookSelector();
+      renderActiveBook();
+    });
+  </script>
+</body>
+</html>
